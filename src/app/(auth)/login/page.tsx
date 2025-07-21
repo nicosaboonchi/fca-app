@@ -17,7 +17,7 @@ const LoginPage = () => {
   // Other effects
 
   return (
-    <div className="w-full max-w-sm md:max-w-3xl border border-black grid md:grid-cols-2 rounded-2xl overflow-hidden shadow-lg">
+    <div className="bg-gray-100 w-full max-w-sm md:max-w-3xl grid md:grid-cols-2 rounded-2xl overflow-hidden shadow-lg">
       <LoginForm />
       <div className="hidden w-full md:block relative">
         <Image
