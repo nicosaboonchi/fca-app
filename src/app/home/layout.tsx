@@ -34,14 +34,14 @@ const links = [
   },
 ];
 
-const Layout = ({ children }: { children: React.ReactNode }) => {
+const Layout = () => {
   const [isCollapsed, setIsCollapsed] = useState(false);
 
   return (
     <div
       className={`${
         isCollapsed ? "w-[56px] px-2" : "w-[240px] px-4"
-      } min-h-svh bg-primary py-4 gap-6 flex flex-col justify-between transition-all duration-600 ease-in-out`}
+      } min-h-svh bg-primary py-4 gap-6 flex flex-col justify-between transition-all duration-300 ease-in-out`}
     >
       <div className="flex flex-col gap-4">
         <div
