@@ -34,7 +34,7 @@ const links = [
   },
 ];
 
-const Layout = () => {
+const Layout = ({ children }: { children: React.ReactNode }) => {
   const [isCollapsed, setIsCollapsed] = useState(false);
 
   return (
@@ -60,8 +60,12 @@ const Layout = () => {
             <PanelLeft width={18} height={18} className="text-white" />
           </Button>
         </div>
-        {links.map((link) => (
-          <Button variant="sidebar" size={isCollapsed ? "icon" : "md"}>
+        {links.map((link, index) => (
+          <Button
+            key={index}
+            variant="sidebar"
+            size={isCollapsed ? "icon" : "md"}
+          >
             {link.icon}
             <span className={`text-white ${isCollapsed ? "hidden" : "block"}`}>
               {link.name}
