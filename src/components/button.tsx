@@ -11,6 +11,7 @@ const buttonVariants = cva(
         secondary: "bg-gray-300 text-black hover:bg-gray-400",
         outline: "bg-transparent border border-gray-500 hover:bg-gray-200",
         ghost: "bg-transparent hover:bg-gray-200",
+        sidebar: "bg-transparent hover:bg-gray-200 flex gap-2",
       },
       size: {
         md: "px-4 py-2",

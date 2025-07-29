@@ -1,8 +1,38 @@
 "use client";
 import React, { useState } from "react";
-import { PanelLeft, LayoutDashboard, Users, FileText } from "lucide-react";
+import {
+  PanelLeft,
+  LayoutDashboard,
+  Users,
+  FileText,
+  Building2,
+  FileChartPie,
+} from "lucide-react";
 import { Button } from "@/components/button";
 import Image from "next/image";
+
+const links = [
+  {
+    name: "Dashboard",
+    icon: <LayoutDashboard className="text-white" />,
+  },
+  {
+    name: "Clients",
+    icon: <Users className="text-white" />,
+  },
+  {
+    name: "Contracts",
+    icon: <FileText className="text-white" />,
+  },
+  {
+    name: "Buildings",
+    icon: <Building2 className="text-white" />,
+  },
+  {
+    name: "Reports",
+    icon: <FileChartPie className="text-white" />,
+  },
+];
 
 const Layout = () => {
   const [isCollapsed, setIsCollapsed] = useState(false);
@@ -11,7 +41,7 @@ const Layout = () => {
     <div
       className={`${
         isCollapsed ? "w-[56px] px-2" : "w-[240px] px-4"
-      } min-h-svh bg-primary py-4 gap-6 flex flex-col justify-between transition-all duration-300 ease-out`}
+      } min-h-svh bg-primary py-4 gap-6 flex flex-col justify-between transition-all duration-600 ease-in-out`}
     >
       <div className="flex flex-col gap-4">
         <div
@@ -30,26 +60,40 @@ const Layout = () => {
             <PanelLeft width={18} height={18} className="text-white" />
           </Button>
         </div>
-        <Button variant="ghost" size={isCollapsed ? "icon" : "md"}>
-          <LayoutDashboard className="text-white" />
-          <span className={`text-white ${isCollapsed ? "hidden" : "block"}`}>
-            Dashboard
-          </span>
-        </Button>
-        <Button variant="ghost" size={isCollapsed ? "icon" : "md"}>
-          <Users className="text-white" />
-          <span className={`text-white ${isCollapsed ? "hidden" : "block"}`}>
-            Clients
-          </span>
-        </Button>
-        <Button variant="ghost" size={isCollapsed ? "icon" : "md"}>
-          <FileText className="text-white" />
-          <span className={`text-white ${isCollapsed ? "hidden" : "block"}`}>
-            Contracts
-          </span>
-        </Button>
+        {links.map((link) => (
+          <Button variant="sidebar" size={isCollapsed ? "icon" : "md"}>
+            {link.icon}
+            <span className={`text-white ${isCollapsed ? "hidden" : "block"}`}>
+              {link.name}
+            </span>
+          </Button>
+        ))}
       </div>
-      <div className="bg-gray-300">profile</div>
+
+      <div className="flex items-center gap-3 h-10 w-full">
+        <div className="h-full aspect-square">
+          <Image
+            src="/avatar.png"
+            alt="profile"
+            width={40}
+            height={40}
+            className="w-full h-full rounded-full object-cover"
+          />
+        </div>
+
+        <div className="flex flex-col justify-center min-w-0 flex-1">
+          <span
+            className={`text-white leading-tight truncate ${isCollapsed ? "hidden" : "block"}`}
+          >
+            Nico Saboonchi
+          </span>
+          <span
+            className={`${isCollapsed ? "hidden" : "block"} text-gray-400 text-sm leading-tight truncate`}
+          >
+            Application Developer
+          </span>
+        </div>
+      </div>
     </div>
   );
 };
