@@ -2,8 +2,9 @@
 import React, { useState } from "react";
 import { PanelLeft, LayoutDashboard, Users, FileText } from "lucide-react";
 import { Button } from "@/components/button";
+import Image from "next/image";
 
-const Layout = ({ children }: { children: React.ReactNode }) => {
+const Layout = () => {
   const [isCollapsed, setIsCollapsed] = useState(false);
 
   return (
@@ -18,7 +19,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
             isCollapsed ? "justify-center" : "justify-between"
           } pb-4`}
         >
-          <img
+          <Image
             width={26}
             height={26}
             src="Vector.svg"

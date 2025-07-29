@@ -3,17 +3,17 @@ import { Input } from "@/components/input";
 import React from "react";
 
 const LoginForm = () => {
-  function handleSubmit() {
-    // Handle form submission
-  }
+  // function handleSubmit() {
+  //   Handle form submission
+  // }
 
-  function validateInput() {
-    // Validate user input
-  }
+  // function validateInput() {
+  //   Validate user input
+  // }
 
   return (
     <form
-      onSubmit={handleSubmit}
+      onSubmit={() => {}}
       className="flex px-8 py-4 w-full rounded-xl justify-center items-center"
     >
       <div className="flex flex-col gap-8 w-full">
