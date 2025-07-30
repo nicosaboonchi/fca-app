@@ -8,7 +8,7 @@ const Page = () => {
           Welcome back, Nico!
         </h2>
         <p className="text-gray-600 mt-2">
-          Here's what's happening with your projects today.
+          Here&apos;s what&apos;s happening with your projects today.
         </p>
       </div>
 

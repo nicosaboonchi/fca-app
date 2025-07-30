@@ -1,12 +1,5 @@
 import React, { useState } from "react";
-import {
-  PanelLeft,
-  LayoutDashboard,
-  Users,
-  FileText,
-  Building2,
-  FileChartPie,
-} from "lucide-react";
+import { PanelLeft } from "lucide-react";
 import { Button } from "@/components/button";
 import Image from "next/image";
 
@@ -20,7 +13,7 @@ const SideBar = ({
     <div
       className={`${
         isCollapsed ? "w-[56px] px-2" : "w-[240px] px-4"
-      } min-h-screen bg-primary py-4 gap-6 flex flex-col justify-between transition-all duration-300 ease-in-out`}
+      } bg-primary py-4 gap-6 flex flex-col justify-between transition-all duration-300 ease-in-out`}
     >
       <div className="flex flex-col gap-4">
         <div
