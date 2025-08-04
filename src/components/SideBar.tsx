@@ -18,18 +18,18 @@ const SideBar = ({
       <div className="flex flex-col gap-4">
         <div
           className={`flex ${
-            isCollapsed ? "justify-center" : "justify-between"
+            isCollapsed ? "justify-center" : "justify-between pl-4"
           } pb-4`}
         >
           <Image
-            width={26}
-            height={26}
+            width={24}
+            height={24}
             src="Vector.svg"
             alt="Vector"
-            className={isCollapsed ? "hidden" : "block"}
+            className={`${isCollapsed ? "hidden" : "block"}`}
           />
-          <Button size="icon" onClick={() => setIsCollapsed(!isCollapsed)}>
-            <PanelLeft width={18} height={18} className="text-white" />
+          <Button variant="ghost" onClick={() => setIsCollapsed(!isCollapsed)}>
+            <PanelLeft width={24} height={24} className="text-white" />
           </Button>
         </div>
         {links.map((link, index) => (
@@ -37,6 +37,7 @@ const SideBar = ({
             key={index}
             variant="sidebar"
             size={isCollapsed ? "icon" : "md"}
+            className={isCollapsed ? "justify-center" : "justify-start"}
           >
             {link.icon}
             <span className={`text-white ${isCollapsed ? "hidden" : "block"}`}>
