@@ -6,7 +6,7 @@ const page = () => {
   return (
     <div className="flex flex-col gap-4">
       <div>Quick Clients</div>
-      <div className="grid grid-cols-5 gap-3">
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3">
         <ClientCardSm name="Client Name" type="Client Type" />
         <ClientCardSm name="Client Name" type="Client Type" />
         <ClientCardSm name="Client Name" type="Client Type" />

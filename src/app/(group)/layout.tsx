@@ -14,22 +14,27 @@ const links = [
   {
     name: "Dashboard",
     icon: <LayoutDashboard className="text-white" />,
+    href: "/home",
   },
   {
     name: "Clients",
     icon: <Users className="text-white" />,
+    href: "/clients",
   },
   {
     name: "Contracts",
     icon: <FileText className="text-white" />,
+    href: "#",
   },
   {
     name: "Buildings",
     icon: <Building2 className="text-white" />,
+    href: "#",
   },
   {
     name: "Reports",
     icon: <FileChartPie className="text-white" />,
+    href: "#",
   },
 ];
 
