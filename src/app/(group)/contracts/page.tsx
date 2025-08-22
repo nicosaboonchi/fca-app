@@ -1,5 +1,4 @@
 import React from "react";
-import Link from "next/link";
 import ContractsTableClient from "@/components/ContractsTableClient";
 import { Button } from "@/components/button";
 
