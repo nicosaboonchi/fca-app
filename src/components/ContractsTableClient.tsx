@@ -177,7 +177,7 @@ export default function ContractsTableClient({
       <div className="overflow-x-auto bg-white border rounded-md shadow-sm">
         <table className="min-w-full table-auto">
           <thead className="bg-gray-50">
-            <tr>
+            <tr className="bg-gray-200 border-b-1">
               <th className="px-4 py-3 text-left text-xs font-semibold text-gray-600">
                 ID
               </th>
