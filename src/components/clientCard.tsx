@@ -27,20 +27,22 @@ const ClientCard = ({
             <span>{type}</span>
           </div>
         </div>
-        <div className="px-0.5 py-1.5 bg-green-300 rounded-md text-xs font-bold">{status}</div>
+        <div className="px-0.5 py-1.5 bg-green-300 rounded-md text-xs font-bold">
+          {status}
+        </div>
       </div>
       <div className="flex justify-between">
-        <div>
+        <div className="items-center flex flex-col">
           <span>Buildings</span>
           <Building2 />
           <span>{buildings}</span>
         </div>
-        <div>
+        <div className="items-center flex flex-col">
           <span>Projects</span>
           <FileText />
           <span>{projects}</span>
         </div>
-        <div>
+        <div className="items-center flex flex-col">
           <span>Observations</span>
           <Eye />
           <span>{observations}</span>
