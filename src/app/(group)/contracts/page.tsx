@@ -1,6 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import ContractsTableClient from "@/components/ContractsTableClient";
+import { Button } from "@/components/button";
 
 type Contract = {
   id: string;
@@ -58,8 +59,18 @@ const Page = () => {
 
   return (
     <div className="flex flex-col gap-6">
+      <div className="flex justify-between items-center">
+        <div>
+          <h2 className="text-lg font-semibold">Contract Overview</h2>
+        </div>
+        <div className="flex gap-2">
+          <Button variant={"secondary"}>Export</Button>
+          <Button>Add Contract</Button>
+        </div>
+      </div>
+
       {/* Top widgets + action */}
-      <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+      <div>
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 w-full md:w-auto">
           <div className="bg-white border p-4 rounded-md shadow-sm">
             <div className="text-xs text-gray-500">Total contracts</div>
@@ -73,15 +84,6 @@ const Page = () => {
             <div className="text-xs text-gray-500">Expiring (90d)</div>
             <div className="text-2xl font-bold">{expiring}</div>
           </div>
-        </div>
-
-        <div className="md:ml-4">
-          <Link
-            href="/(group)/contracts/new"
-            className="inline-flex items-center px-3 py-2 bg-blue-600 text-white rounded-md text-sm"
-          >
-            New Contract
-          </Link>
         </div>
       </div>
 

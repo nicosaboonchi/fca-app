@@ -1,6 +1,7 @@
 "use client";
 import React, { useMemo, useState } from "react";
 import Link from "next/link";
+import { Button } from "./button";
 
 type Contract = {
   id: string;
@@ -177,6 +178,15 @@ export default function ContractsTableClient({
       <div className="overflow-x-auto bg-white border rounded-md shadow-sm">
         <table className="min-w-full table-auto">
           <thead className="bg-gray-50">
+            <tr>
+              <th colSpan={7} className="px-4 py-2 border-b">
+                <div className="flex gap-2">
+                    <Button size="sm">Active</Button>
+                    <Button size="sm">Pending</Button>
+                    <Button size="sm">Expired</Button>
+                </div>
+              </th>
+            </tr>
             <tr className="bg-gray-200 border-b-1">
               <th className="px-4 py-3 text-left text-xs font-semibold text-gray-600">
                 ID
