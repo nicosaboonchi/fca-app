@@ -2,11 +2,12 @@ import React, { useState } from "react";
 import { PanelLeft } from "lucide-react";
 import { Button } from "@/components/button";
 import Image from "next/image";
+import Link from "next/link";
 
 const SideBar = ({
   links,
 }: {
-  links: { name: string; icon: React.ReactElement }[];
+  links: { name: string; icon: React.ReactElement; href: string }[];
 }) => {
   const [isCollapsed, setIsCollapsed] = useState(false);
   return (
@@ -35,14 +36,19 @@ const SideBar = ({
         {links.map((link, index) => (
           <Button
             key={index}
+            asChild
             variant="sidebar"
             size={isCollapsed ? "icon" : "md"}
             className={isCollapsed ? "justify-center" : "justify-start"}
           >
-            {link.icon}
-            <span className={`text-white ${isCollapsed ? "hidden" : "block"}`}>
-              {link.name}
-            </span>
+            <Link href={link.href}>
+              {link.icon}
+              <span
+                className={`text-white ${isCollapsed ? "hidden" : "block"}`}
+              >
+                {link.name}
+              </span>
+            </Link>
           </Button>
         ))}
       </div>
