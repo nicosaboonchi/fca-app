@@ -15,6 +15,7 @@ const buttonVariants = cva(
         sidebar: "bg-transparent hover:bg-gray-200 flex gap-2",
       },
       size: {
+        sm: "px-2 py-1 text-sm",
         md: "px-4 py-2",
         icon: "p-1",
       },

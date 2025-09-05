@@ -8,7 +8,7 @@ const Header = () => {
     <header className="bg-white border-b border-gray-200 px-6 py-4 flex items-center justify-between">
       {/* Left side - Title/Breadcrumbs */}
       <div className="flex items-center gap-4">
-        <h1 className="text-2xl font-semibold text-gray-900">Dashboard</h1>
+        <h1 className="text-2xl font-semibold text-gray-900">Facility Condition App</h1>
       </div>
 
       {/* Center - Search */}
