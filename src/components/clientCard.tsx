@@ -54,7 +54,7 @@ export function ClientCard({
 
       <CardFooter>
         <Button className="w-full" onClick={onClick}>
-          Click Me
+          View Client
         </Button>
       </CardFooter>
     </Card>

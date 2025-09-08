@@ -1,6 +1,15 @@
 "use client";
 import React from "react";
 import ClientCard from "@/components/clientCard";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectLabel,
+  SelectTrigger,
+  SelectValue,
+} from "@/app/components/ui/select";
+import { SelectGroup } from "@radix-ui/react-select";
 
 type ClientStatus = "Active" | "Pending" | "Inactive";
 type ClientType =
@@ -123,6 +132,30 @@ const clients: Client[] = [
   },
   {
     id: "CL-009",
+    name: "Federal Agency",
+    type: "Government",
+    status: "Pending",
+    buildings: 1,
+    projects: 1,
+    observations: 34,
+    lastActivity: "2025-09-06",
+    contactName: "William Taylor",
+    region: "Northeast",
+  },
+  {
+    id: "CL-9000",
+    name: "Federal Agency HQ",
+    type: "Government",
+    status: "Pending",
+    buildings: 1,
+    projects: 1,
+    observations: 34,
+    lastActivity: "2025-09-06",
+    contactName: "William Taylor",
+    region: "Northeast",
+  },
+  {
+    id: "CL-019",
     name: "Federal Agency HQ",
     type: "Government",
     status: "Pending",
@@ -137,19 +170,53 @@ const clients: Client[] = [
 
 const page = () => {
   return (
-    <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-      {clients.map((client) => (
-        <ClientCard
-          key={client.name}
-          name={client.name}
-          type={client.type}
-          status={client.status}
-          buildings={client.buildings}
-          projects={client.projects}
-          observations={client.observations}
-          onClick={() => console.log(`${client.name} clicked`)}
-        />
-      ))}
+    <div className="space-y-6">
+      <div className="flex justify-end gap-4">
+        <Select>
+          <SelectTrigger className="w-[180px]">
+            <SelectValue placeholder="Filter by Status" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectGroup>
+              <SelectLabel>Status</SelectLabel>
+              <SelectItem value="Active">Active</SelectItem>
+              <SelectItem value="Pending">Pending</SelectItem>
+              <SelectItem value="Inactive">Inactive</SelectItem>
+            </SelectGroup>
+          </SelectContent>
+        </Select>
+        <Select>
+          <SelectTrigger className="w-[180px]">
+            <SelectValue placeholder="Filter by Type" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectGroup>
+              <SelectLabel>Type</SelectLabel>
+              <SelectItem value="Commercial">Commercial</SelectItem>
+              <SelectItem value="Residential">Residential</SelectItem>
+              <SelectItem value="Industrial">Industrial</SelectItem>
+              <SelectItem value="Healthcare">Healthcare</SelectItem>
+              <SelectItem value="Education">Education</SelectItem>
+              <SelectItem value="Government">Government</SelectItem>
+            </SelectGroup>
+          </SelectContent>
+        </Select>
+      </div>
+
+      <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {clients.map((client) => (
+          <ClientCard
+            key={client.id}
+            name={client.name}
+            type={client.type}
+            status={client.status}
+            buildings={client.buildings}
+            projects={client.projects}
+            observations={client.observations}
+            onClick={() => console.log(`${client.name} clicked`)}
+          />
+        ))}
+      </div>
     </div>
   );
 };
