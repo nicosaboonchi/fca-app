@@ -1,11 +1,11 @@
 import Image from "next/image";
+import Link from "next/link";
 import {
   Sidebar,
   SidebarContent,
   SidebarFooter,
   SidebarGroup,
   SidebarGroupContent,
-  SidebarGroupLabel,
   SidebarHeader,
   SidebarMenu,
   SidebarMenuButton,
@@ -21,6 +21,7 @@ import {
   ChevronUp,
   LogOut,
   Settings,
+  Bell,
 } from "lucide-react";
 import {
   DropdownMenu,
@@ -30,11 +31,11 @@ import {
 } from "./ui/dropdown-menu";
 
 const items = [
-  { title: "Dashboard", url: "#", icon: LayoutDashboard },
-  { title: "Clients", url: "#", icon: Users },
-  { title: "Contracts", url: "#", icon: FileText },
-  { title: "Buildings", url: "#", icon: Building2 },
-  { title: "Reports", url: "#", icon: FileChartPie },
+  { title: "Dashboard", url: "/home", icon: LayoutDashboard },
+  { title: "Clients", url: "/clients", icon: Users },
+  { title: "Contracts", url: "/contracts", icon: FileText },
+  { title: "Buildings", url: "/buildings", icon: Building2 },
+  { title: "Reports", url: "/reports", icon: FileChartPie },
 ];
 
 export const AppSidebar = () => {
@@ -44,7 +45,7 @@ export const AppSidebar = () => {
         <SidebarMenu>
           <SidebarMenuItem>
             <SidebarMenuButton size="lg" asChild>
-              <a href="#">
+              <Link href="/home">
                 <div className="bg-gray-300 flex aspect-square size-8 items-center justify-center rounded-lg">
                   <Image src="/Vector.svg" alt="logo" width={16} height={16} />
                 </div>
@@ -54,7 +55,7 @@ export const AppSidebar = () => {
                     Facility Condition App
                   </span>
                 </div>
-              </a>
+              </Link>
             </SidebarMenuButton>
           </SidebarMenuItem>
         </SidebarMenu>
@@ -67,10 +68,10 @@ export const AppSidebar = () => {
               {items.map((item) => (
                 <SidebarMenuItem key={item.title}>
                   <SidebarMenuButton asChild tooltip={item.title}>
-                    <a href={item.url}>
+                    <Link href={item.url}>
                       <item.icon />
                       <span>{item.title}</span>
-                    </a>
+                    </Link>
                   </SidebarMenuButton>
                 </SidebarMenuItem>
               ))}
@@ -96,6 +97,10 @@ export const AppSidebar = () => {
                 <DropdownMenuItem>
                   <User2 />
                   <span>Profile</span>
+                </DropdownMenuItem>
+                <DropdownMenuItem>
+                  <Bell />
+                  <span>Notifications</span>
                 </DropdownMenuItem>
                 <DropdownMenuItem>
                   <Settings />

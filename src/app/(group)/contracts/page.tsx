@@ -43,7 +43,7 @@ const contracts: Contract[] = [
 
 const Page = () => {
   return (
-    <div className="flex flex-col gap-6">
+    <div>
       <div className="flex justify-between items-center">
         <div>
           <h2 className="text-lg font-semibold">Contract Overview</h2>
