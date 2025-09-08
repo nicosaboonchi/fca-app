@@ -1,56 +1,97 @@
-import React from "react";
-import { Button } from "@/components/button";
-import { Building2, FileText, Eye } from "lucide-react";
+"use client";
 
-const ClientCard = ({
+import { Building2, FileText, Eye, type LucideIcon } from "lucide-react";
+import {
+  Card,
+  CardHeader,
+  CardTitle,
+  CardDescription,
+  CardContent,
+  CardFooter,
+} from "@/app/components/ui/card";
+import { Badge } from "@/app/components/ui/badge";
+import { Button } from "@/app/components/ui/button";
+
+type ClientCardProps = {
+  name: string;
+  type: string;
+  status: "Active" | "Pending" | "On Hold" | "Archived" | (string & {});
+  buildings: number;
+  projects: number;
+  observations: number;
+  onClick?: () => void;
+};
+
+export function ClientCard({
   name,
   type,
   status,
   buildings,
   projects,
   observations,
-}: {
-  name: string;
-  type: string;
-  status: string;
-  buildings: number;
-  projects: number;
-  observations: number;
-}) => {
+  onClick,
+}: ClientCardProps) {
   return (
-    <div className="flex flex-col border-1 border-black py-2 px-4 rounded-xl gap-4">
-      <div className="flex justify-between items-center">
-        <div className="flex gap-2">
-          <div className="bg-gray-300 rounded-full w-12 h-12" />
-          <div className="flex flex-col">
-            <span>{name}</span>
-            <span>{type}</span>
+    <Card className="rounded-xl w-full h-full">
+      <CardHeader className="flex flex-row items-center justify-between">
+        <div className="flex items-center gap-3">
+          <div className="size-12 rounded-full bg-muted" />
+          <div className="leading-tight">
+            <CardTitle className="text-base">{name}</CardTitle>
+            <CardDescription className="text-xs">{type}</CardDescription>
           </div>
         </div>
-        <div className="px-0.5 py-1.5 bg-green-300 rounded-md text-xs font-bold">
-          {status}
+        <Badge className={statusClass(status)}>{status}</Badge>
+      </CardHeader>
+
+      <CardContent>
+        <div className="grid grid-cols-3 gap-3 text-center">
+          <Stat label="Buildings" icon={Building2} value={buildings} />
+          <Stat label="Projects" icon={FileText} value={projects} />
+          <Stat label="Observations" icon={Eye} value={observations} />
         </div>
-      </div>
-      <div className="flex justify-between">
-        <div className="items-center flex flex-col">
-          <span>Buildings</span>
-          <Building2 />
-          <span>{buildings}</span>
-        </div>
-        <div className="items-center flex flex-col">
-          <span>Projects</span>
-          <FileText />
-          <span>{projects}</span>
-        </div>
-        <div className="items-center flex flex-col">
-          <span>Observations</span>
-          <Eye />
-          <span>{observations}</span>
-        </div>
-      </div>
-      <Button>Click Me</Button>
+      </CardContent>
+
+      <CardFooter>
+        <Button className="w-full" onClick={onClick}>
+          Click Me
+        </Button>
+      </CardFooter>
+    </Card>
+  );
+}
+
+function Stat({
+  label,
+  icon: Icon,
+  value,
+}: {
+  label: string;
+  icon: LucideIcon;
+  value: number;
+}) {
+  return (
+    <div className="flex flex-col items-center gap-1">
+      <span className="text-xs text-muted-foreground">{label}</span>
+      <Icon className="size-5" aria-hidden />
+      <span className="text-sm font-medium">{value}</span>
     </div>
   );
-};
+}
+
+function statusClass(status: string) {
+  switch (status) {
+    case "Active":
+      return "bg-emerald-100 text-emerald-700 hover:bg-emerald-100";
+    case "Pending":
+      return "bg-amber-100 text-amber-700 hover:bg-amber-100";
+    case "On Hold":
+      return "bg-sky-100 text-sky-700 hover:bg-sky-100";
+    case "Archived":
+      return "bg-zinc-200 text-zinc-700 hover:bg-zinc-200";
+    default:
+      return "";
+  }
+}
 
 export default ClientCard;
