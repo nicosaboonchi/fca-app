@@ -19,7 +19,6 @@ type ClientCardProps = {
   buildings: number;
   projects: number;
   observations: number;
-  onClick?: () => void;
 };
 
 export function ClientCard({
@@ -29,7 +28,6 @@ export function ClientCard({
   buildings,
   projects,
   observations,
-  onClick,
 }: ClientCardProps) {
   return (
     <Card className="rounded-xl w-full h-full">
@@ -53,7 +51,10 @@ export function ClientCard({
       </CardContent>
 
       <CardFooter>
-        <Button className="w-full" onClick={onClick}>
+        <Button
+          className="w-full"
+          onClick={() => console.log(`${name} clicked`)}
+        >
           View Client
         </Button>
       </CardFooter>

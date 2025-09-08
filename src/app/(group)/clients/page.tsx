@@ -1,4 +1,3 @@
-"use client";
 import React from "react";
 import ClientCard from "@/components/clientCard";
 import {
@@ -213,7 +212,6 @@ const page = () => {
             buildings={client.buildings}
             projects={client.projects}
             observations={client.observations}
-            onClick={() => console.log(`${client.name} clicked`)}
           />
         ))}
       </div>
