@@ -180,7 +180,6 @@ const clients: Client[] = [
 const Page = () => {
   const [pinnedClientIds, setPinnedClientIds] = React.useState<string[]>([]);
   const [selectedClients, setSelectedClients] = React.useState<string[]>([]);
-  const [viewType, setViewType] = React.useState<"grid" | "list">("grid");
   const [sortBy, setSortBy] = React.useState<"name" | "recent" | "status">(
     "name"
   );
@@ -193,15 +192,6 @@ const Page = () => {
   // Toggle pin status for a client
   const togglePinned = (clientId: string) => {
     setPinnedClientIds((prev) =>
-      prev.includes(clientId)
-        ? prev.filter((id) => id !== clientId)
-        : [...prev, clientId]
-    );
-  };
-
-  // Toggle client selection
-  const toggleSelectClient = (clientId: string) => {
-    setSelectedClients((prev) =>
       prev.includes(clientId)
         ? prev.filter((id) => id !== clientId)
         : [...prev, clientId]

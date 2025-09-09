@@ -9,38 +9,6 @@ type Contract = {
   end: string;
   value: number;
 };
-
-const contracts: Contract[] = [
-  {
-    id: "C-001",
-    client: "Acme Corp",
-    start: "2023-01-01",
-    end: "2025-01-01",
-    value: 120000,
-  },
-  {
-    id: "C-002",
-    client: "Global Industries",
-    start: "2022-06-15",
-    end: "2024-09-30",
-    value: 45000,
-  },
-  {
-    id: "C-003",
-    client: "Nico Estates",
-    start: "2024-02-01",
-    end: "2025-02-01",
-    value: 98000,
-  },
-  {
-    id: "C-004",
-    client: "Sunrise LLC",
-    start: "2024-08-01",
-    end: "2025-07-31",
-    value: 30000,
-  },
-];
-
 const Page = () => {
   return (
     <div>
