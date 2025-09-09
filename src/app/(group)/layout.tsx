@@ -1,52 +1,28 @@
-"use client";
 import React from "react";
 import {
-  LayoutDashboard,
-  Users,
-  FileText,
-  Building2,
-  FileChartPie,
-} from "lucide-react";
-import Header from "@/components/header";
-import SideBar from "@/components/SideBar";
-
-const links = [
-  {
-    name: "Dashboard",
-    icon: <LayoutDashboard className="text-white" />,
-    href: "/home",
-  },
-  {
-    name: "Clients",
-    icon: <Users className="text-white" />,
-    href: "/clients",
-  },
-  {
-    name: "Contracts",
-    icon: <FileText className="text-white" />,
-    href: "#",
-  },
-  {
-    name: "Buildings",
-    icon: <Building2 className="text-white" />,
-    href: "#",
-  },
-  {
-    name: "Reports",
-    icon: <FileChartPie className="text-white" />,
-    href: "#",
-  },
-];
+  SidebarInset,
+  SidebarProvider,
+  SidebarTrigger,
+} from "../components/ui/sidebar";
+import { AppSidebar } from "../components/app-sidebar";
+import ModeToggle from "../components/mode-toggle";
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
   return (
-    <div className="flex min-h-svh bg-gray-50">
-      <SideBar links={links} />
-      <div className="flex-1 flex flex-col">
-        <Header />
-        <main className="flex-1 p-6">{children}</main>
-      </div>
-    </div>
+    <SidebarProvider>
+      <AppSidebar />
+      <SidebarInset>
+        <main className="w-full flex-1 flex flex-col">
+          <header className="flex justify-between px-4 items-center h-16 shrink-0 transition-[width, height] ease-linear group-has-data-[collapsible=icon]/sidebar-wrapper:h-12">
+            <div className="flex items-center gap-2">
+              <SidebarTrigger />
+            </div>
+            <ModeToggle />
+          </header>
+          <div className="p-4 pt-0">{children}</div>
+        </main>
+      </SidebarInset>
+    </SidebarProvider>
   );
 };
 
