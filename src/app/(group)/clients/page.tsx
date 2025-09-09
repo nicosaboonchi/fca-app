@@ -237,7 +237,7 @@ const Page = () => {
                 <Plus className="mr-2 h-4 w-4" /> Add Client
               </Button>
             </PopoverTrigger>
-            <PopoverContent>
+            <PopoverContent align="end">
               <div className="grid gap-4 p-4">
                 <div className="space-y-1">
                   <h4 className="font-medium leading-none">Create Client</h4>
@@ -246,8 +246,23 @@ const Page = () => {
                   </p>
                 </div>
                 <Input placeholder="Client Name" />
-                <Input placeholder="Client Type" />
-                <Input placeholder="Client Status" />
+                <Select>
+                  <SelectTrigger className="w-full">
+                    <SelectValue placeholder="Select Type" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectGroup>
+                      <SelectLabel>Type</SelectLabel>
+                      <SelectItem value="all">All Types</SelectItem>
+                      <SelectItem value="Commercial">Commercial</SelectItem>
+                      <SelectItem value="Residential">Residential</SelectItem>
+                      <SelectItem value="Industrial">Industrial</SelectItem>
+                      <SelectItem value="Healthcare">Healthcare</SelectItem>
+                      <SelectItem value="Education">Education</SelectItem>
+                      <SelectItem value="Government">Government</SelectItem>
+                    </SelectGroup>
+                  </SelectContent>
+                </Select>
                 <Button>Create Client</Button>
               </div>
             </PopoverContent>
