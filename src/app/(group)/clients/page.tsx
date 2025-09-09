@@ -178,79 +178,13 @@ const clients: Client[] = [
 ];
 
 const Page = () => {
-  const [pinnedClientIds, setPinnedClientIds] = React.useState<string[]>([]);
-  const [selectedClients, setSelectedClients] = React.useState<string[]>([]);
-  const [sortBy, setSortBy] = React.useState<"name" | "recent" | "status">(
-    "name"
-  );
-  const [searchTerm, setSearchTerm] = React.useState("");
-  const [statusFilter, setStatusFilter] = React.useState<ClientStatus | "all">(
-    "all"
-  );
-  const [typeFilter, setTypeFilter] = React.useState<ClientType | "all">("all");
-
-  // Toggle pin status for a client
-  const togglePinned = (clientId: string) => {
-    setPinnedClientIds((prev) =>
-      prev.includes(clientId)
-        ? prev.filter((id) => id !== clientId)
-        : [...prev, clientId]
-    );
-  };
-
-  // Sort and filter clients
-  const sortedClients = React.useMemo(() => {
-    return [...clients]
-      .filter((client) => {
-        const matchesSearch = client.name
-          .toLowerCase()
-          .includes(searchTerm.toLowerCase());
-        const matchesStatus =
-          statusFilter === "all" || client.status === statusFilter;
-        const matchesType = typeFilter === "all" || client.type === typeFilter;
-        return matchesSearch && matchesStatus && matchesType;
-      })
-      .sort((a, b) => {
-        // First, sort by pinned status
-        const isPinnedA = pinnedClientIds.includes(a.id);
-        const isPinnedB = pinnedClientIds.includes(b.id);
-        if (isPinnedA && !isPinnedB) return -1;
-        if (!isPinnedA && isPinnedB) return 1;
-
-        // Then, apply selected sort
-        switch (sortBy) {
-          case "name":
-            return a.name.localeCompare(b.name);
-          case "recent":
-            return (
-              new Date(b.lastActivity || "").getTime() -
-              new Date(a.lastActivity || "").getTime()
-            );
-          case "status":
-            return a.status.localeCompare(b.status);
-          default:
-            return 0;
-        }
-      });
-  }, [pinnedClientIds, sortBy, searchTerm, statusFilter, typeFilter]);
-
   return (
     <div className="flex flex-col gap-6">
       {/* Controls */}
       <div className="flex flex-col md:flex-row gap-4 justify-between items-start md:items-center">
         <div className="flex flex-wrap items-center gap-2">
-          <Input
-            className="w-[200px]"
-            placeholder="Search Clients..."
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-          />
-          <Select
-            value={statusFilter}
-            onValueChange={(value: ClientStatus | "all") =>
-              setStatusFilter(value)
-            }
-          >
+          <Input className="w-[200px]" placeholder="Search Clients..." />
+          <Select>
             <SelectTrigger className="w-[130px]">
               <SelectValue placeholder="Filter Status" />
             </SelectTrigger>
@@ -264,10 +198,7 @@ const Page = () => {
               </SelectGroup>
             </SelectContent>
           </Select>
-          <Select
-            value={typeFilter}
-            onValueChange={(value: ClientType | "all") => setTypeFilter(value)}
-          >
+          <Select>
             <SelectTrigger className="w-[130px]">
               <SelectValue placeholder="Filter Type" />
             </SelectTrigger>
@@ -284,12 +215,7 @@ const Page = () => {
               </SelectGroup>
             </SelectContent>
           </Select>
-          <Select
-            value={sortBy}
-            onValueChange={(value: "name" | "recent" | "status") =>
-              setSortBy(value)
-            }
-          >
+          <Select>
             <SelectTrigger className="w-[130px]">
               <SelectValue placeholder="Sort By" />
             </SelectTrigger>
@@ -305,11 +231,6 @@ const Page = () => {
         </div>
 
         <div className="flex items-center gap-2">
-          {selectedClients.length > 0 && (
-            <Button variant="outline" onClick={() => setSelectedClients([])}>
-              Clear Selection ({selectedClients.length})
-            </Button>
-          )}
           <Popover>
             <PopoverTrigger asChild>
               <Button variant="default">
@@ -336,7 +257,7 @@ const Page = () => {
 
       {/* Client Grid */}
       <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-        {sortedClients.map((client) => (
+        {clients.map((client) => (
           <ClientCard
             key={client.id}
             name={client.name}
@@ -345,8 +266,6 @@ const Page = () => {
             buildings={client.buildings}
             projects={client.projects}
             observations={client.observations}
-            isPinned={pinnedClientIds.includes(client.id)}
-            onTogglePin={() => togglePinned(client.id)}
           />
         ))}
       </div>

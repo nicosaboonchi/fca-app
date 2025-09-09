@@ -1,6 +1,4 @@
 import React from "react";
-import ContractsTableClient from "@/components/ContractsTableClient";
-import { Button } from "@/components/button";
 
 const Page = () => {
   return (
@@ -9,10 +7,7 @@ const Page = () => {
         <div>
           <h2 className="text-lg font-semibold">Contract Overview</h2>
         </div>
-        <div className="flex gap-2">
-          <Button variant={"secondary"}>Export</Button>
-          <Button>Add Contract</Button>
-        </div>
+        <div className="flex gap-2"></div>
       </div>
 
       {/* Top widgets + action */}
@@ -34,7 +29,6 @@ const Page = () => {
       </div>
 
       {/* Client-side interactive table with quick filters */}
-      <ContractsTableClient />
     </div>
   );
 };
