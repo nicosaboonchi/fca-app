@@ -1,5 +1,5 @@
-import { Button } from "@/components/button";
-import { Input } from "@/components/input";
+import { Button } from "@/app/components/ui/button";
+import { Input } from "@/app/components/ui/input";
 import React from "react";
 
 const RegisterForm = () => {
