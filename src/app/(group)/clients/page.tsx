@@ -247,7 +247,9 @@ const Page = () => {
           />
           <Select
             value={statusFilter}
-            onValueChange={(value: any) => setStatusFilter(value)}
+            onValueChange={(value: ClientStatus | "all") =>
+              setStatusFilter(value)
+            }
           >
             <SelectTrigger className="w-[130px]">
               <SelectValue placeholder="Filter Status" />
@@ -264,7 +266,7 @@ const Page = () => {
           </Select>
           <Select
             value={typeFilter}
-            onValueChange={(value: any) => setTypeFilter(value)}
+            onValueChange={(value: ClientType | "all") => setTypeFilter(value)}
           >
             <SelectTrigger className="w-[130px]">
               <SelectValue placeholder="Filter Type" />
@@ -284,7 +286,9 @@ const Page = () => {
           </Select>
           <Select
             value={sortBy}
-            onValueChange={(value: any) => setSortBy(value)}
+            onValueChange={(value: "name" | "recent" | "status") =>
+              setSortBy(value)
+            }
           >
             <SelectTrigger className="w-[130px]">
               <SelectValue placeholder="Sort By" />
@@ -331,13 +335,7 @@ const Page = () => {
       </div>
 
       {/* Client Grid */}
-      <div
-        className={
-          viewType === "grid"
-            ? "grid gap-6 sm:grid-cols-2 lg:grid-cols-4"
-            : "flex flex-col gap-4"
-        }
-      >
+      <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
         {sortedClients.map((client) => (
           <ClientCard
             key={client.id}

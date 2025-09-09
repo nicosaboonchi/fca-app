@@ -2,13 +2,6 @@ import React from "react";
 import ContractsTableClient from "@/components/ContractsTableClient";
 import { Button } from "@/components/button";
 
-type Contract = {
-  id: string;
-  client: string;
-  start: string;
-  end: string;
-  value: number;
-};
 const Page = () => {
   return (
     <div>
