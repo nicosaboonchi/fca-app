@@ -1,6 +1,6 @@
 "use client";
 
-import { Building2, FileText, Eye, type LucideIcon } from "lucide-react";
+import { Building2, FileText, Eye, Pin, type LucideIcon } from "lucide-react";
 import {
   Card,
   CardHeader,
@@ -19,6 +19,8 @@ type ClientCardProps = {
   buildings: number;
   projects: number;
   observations: number;
+  isPinned?: boolean;
+  onTogglePin?: () => void;
 };
 
 export function ClientCard({
@@ -28,9 +30,14 @@ export function ClientCard({
   buildings,
   projects,
   observations,
+  isPinned,
+  onTogglePin,
 }: ClientCardProps) {
   return (
-    <Card className="rounded-xl w-full h-full">
+    <Card
+      className={`rounded-xl w-full h-full
+        ${isPinned ? "ring-2 ring-primary/20" : ""}`}
+    >
       <CardHeader className="flex flex-row items-center justify-between">
         <div className="flex items-center gap-3">
           <div className="size-12 rounded-full bg-muted" />
@@ -39,7 +46,17 @@ export function ClientCard({
             <CardDescription className="text-xs">{type}</CardDescription>
           </div>
         </div>
-        <Badge className={statusClass(status)}>{status}</Badge>
+        <div className="flex items-center gap-2">
+          <Button
+            variant="ghost"
+            size="icon"
+            className={`size-8 ${isPinned ? "text-primary" : "text-muted-foreground"}`}
+            onClick={onTogglePin}
+          >
+            <Pin className={`size-4 ${isPinned ? "fill-current" : ""}`} />
+          </Button>
+          <Badge className={statusClass(status)}>{status}</Badge>
+        </div>
       </CardHeader>
 
       <CardContent>
@@ -50,13 +67,16 @@ export function ClientCard({
         </div>
       </CardContent>
 
-      <CardFooter>
+      <CardFooter className="flex flex-col gap-2">
         <Button
           className="w-full"
           onClick={() => console.log(`${name} clicked`)}
         >
           View Client
         </Button>
+        <span className="text-xs text-muted-foreground self-start">
+          Last updated: {new Date().toLocaleDateString()}
+        </span>
       </CardFooter>
     </Card>
   );
