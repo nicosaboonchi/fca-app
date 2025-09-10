@@ -10,6 +10,7 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
+  SidebarTrigger,
 } from "./ui/sidebar";
 import {
   LayoutDashboard,
@@ -29,6 +30,7 @@ import {
   DropdownMenuItem,
   DropdownMenuContent,
 } from "./ui/dropdown-menu";
+import { Button } from "./ui/button";
 
 const items = [
   { title: "Dashboard", url: "/home", icon: LayoutDashboard },
@@ -41,24 +43,13 @@ const items = [
 export const AppSidebar = () => {
   return (
     <Sidebar collapsible="icon" className="group/sidebar">
-      <SidebarHeader>
-        <SidebarMenu>
-          <SidebarMenuItem>
-            <SidebarMenuButton size="lg" asChild>
-              <Link href="/home">
-                <div className="bg-gray-300 flex aspect-square size-8 items-center justify-center rounded-lg">
-                  <Image src="/Vector.svg" alt="logo" width={16} height={16} />
-                </div>
-                <div className="grid flex-1 text-left text-sm leading-tight">
-                  <span className="truncate font-medium">EAS</span>
-                  <span className="truncate text-xs">
-                    Facility Condition App
-                  </span>
-                </div>
-              </Link>
-            </SidebarMenuButton>
-          </SidebarMenuItem>
-        </SidebarMenu>
+      <SidebarHeader className="flex flex-row items-center justify-between">
+        <Button asChild size="icon" variant="ghost">
+          <Link href="/home">
+            <Image src="/Vector.svg" alt="logo" width={20} height={20} />
+          </Link>
+        </Button>
+        <SidebarTrigger />
       </SidebarHeader>
 
       <SidebarContent>
