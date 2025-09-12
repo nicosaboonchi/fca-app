@@ -43,13 +43,13 @@ const items = [
 export const AppSidebar = () => {
   return (
     <Sidebar collapsible="icon" className="group/sidebar">
-      <SidebarHeader className="flex flex-row items-center justify-between">
-        <Button asChild size="icon" variant="ghost">
-          <Link href="/home">
-            <Image src="/Vector.svg" alt="logo" width={20} height={20} />
-          </Link>
+      <SidebarHeader className="flex flex-row items-center justify-between group">
+        <Button asChild size="icon" variant="ghost" className="relative">
+          <span>
+            <FileText className="absolute transition-opacity duration-200 opacity-0 group-hover:opacity-100 " />
+            <SidebarTrigger className="transition-opacity duration-200 opacity-100 group-hover:opacity-0" />
+          </span>
         </Button>
-        <SidebarTrigger />
       </SidebarHeader>
 
       <SidebarContent>
