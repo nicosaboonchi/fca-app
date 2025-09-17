@@ -33,13 +33,14 @@ import {
   DropdownMenuItem,
   DropdownMenuContent,
 } from "./ui/dropdown-menu";
+import { Button } from "./ui/button";
 const BrandMark = () => (
   <Image
-    src="/logo.svg"
+    src="/Vector.svg"
     alt="FCA logo"
-    width={32}
-    height={32}
-    className="h-8 w-auto"
+    width={20}
+    height={20}
+    className="h-5 w-5"
   />
 );
 
@@ -59,13 +60,17 @@ export const AppSidebar = () => {
     <Sidebar collapsible="icon" className="group/sidebar">
       <SidebarHeader className="p-2">
         {isCollapsed ? (
-          <div className="relative flex h-9 w-full items-center justify-center">
-            <Link
-              href="/"
-              className="flex h-9 w-full items-center justify-center rounded-md transition-opacity duration-200 group-hover/sidebar:pointer-events-none group-hover/sidebar:opacity-0"
+          <div className="relative flex h-9 w-full items-center justify-start">
+            <Button
+              asChild
+              variant={"ghost"}
+              size="icon"
+              className="group-hover/sidebar:opacity-0 transition-opacity duration-200 "
             >
-              <BrandMark />
-            </Link>
+              <Link href="/home">
+                <BrandMark />
+              </Link>
+            </Button>
             <SidebarTrigger
               className="absolute inset-0 m-auto size-9 pointer-events-none opacity-0 transition-opacity duration-200 group-hover/sidebar:pointer-events-auto group-hover/sidebar:opacity-100 focus-visible:pointer-events-auto focus-visible:opacity-100"
               aria-label="Expand sidebar"
@@ -73,13 +78,14 @@ export const AppSidebar = () => {
           </div>
         ) : (
           <div className="flex items-center justify-between gap-2">
-            <Link
-              href="/"
-              className="flex items-center gap-2 rounded-md px-2 py-1.5 text-base font-semibold leading-none"
-            >
-              <BrandMark />
-              <span className="truncate">FCA</span>
-            </Link>
+            <Button asChild variant="ghost" size="icon">
+              <Link
+                href="/home"
+                className="flex items-center rounded-md px-2 py-1.5 text-base font-semibold leading-none"
+              >
+                <BrandMark />
+              </Link>
+            </Button>
             <SidebarTrigger className="shrink-0" />
           </div>
         )}
