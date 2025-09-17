@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
 import {
@@ -11,6 +13,7 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
   SidebarTrigger,
+  useSidebar,
 } from "./ui/sidebar";
 import {
   LayoutDashboard,
@@ -30,7 +33,15 @@ import {
   DropdownMenuItem,
   DropdownMenuContent,
 } from "./ui/dropdown-menu";
-import { Button } from "./ui/button";
+const BrandMark = () => (
+  <Image
+    src="/logo.svg"
+    alt="FCA logo"
+    width={32}
+    height={32}
+    className="h-8 w-auto"
+  />
+);
 
 const items = [
   { title: "Dashboard", url: "/home", icon: LayoutDashboard },
@@ -41,15 +52,37 @@ const items = [
 ];
 
 export const AppSidebar = () => {
+  const { state } = useSidebar();
+  const isCollapsed = state === "collapsed";
+
   return (
     <Sidebar collapsible="icon" className="group/sidebar">
-      <SidebarHeader className="flex flex-row items-center justify-between group">
-        <Button asChild size="icon" variant="ghost" className="relative">
-          <span>
-            <FileText className="absolute transition-opacity duration-200 opacity-0 group-hover:opacity-100 " />
-            <SidebarTrigger className="transition-opacity duration-200 opacity-100 group-hover:opacity-0" />
-          </span>
-        </Button>
+      <SidebarHeader className="p-2">
+        {isCollapsed ? (
+          <div className="relative flex h-9 w-full items-center justify-center">
+            <Link
+              href="/"
+              className="flex h-9 w-full items-center justify-center rounded-md transition-opacity duration-200 group-hover/sidebar:pointer-events-none group-hover/sidebar:opacity-0"
+            >
+              <BrandMark />
+            </Link>
+            <SidebarTrigger
+              className="absolute inset-0 m-auto size-9 pointer-events-none opacity-0 transition-opacity duration-200 group-hover/sidebar:pointer-events-auto group-hover/sidebar:opacity-100 focus-visible:pointer-events-auto focus-visible:opacity-100"
+              aria-label="Expand sidebar"
+            />
+          </div>
+        ) : (
+          <div className="flex items-center justify-between gap-2">
+            <Link
+              href="/"
+              className="flex items-center gap-2 rounded-md px-2 py-1.5 text-base font-semibold leading-none"
+            >
+              <BrandMark />
+              <span className="truncate">FCA</span>
+            </Link>
+            <SidebarTrigger className="shrink-0" />
+          </div>
+        )}
       </SidebarHeader>
 
       <SidebarContent>
@@ -58,10 +91,16 @@ export const AppSidebar = () => {
             <SidebarMenu>
               {items.map((item) => (
                 <SidebarMenuItem key={item.title}>
-                  <SidebarMenuButton asChild tooltip={item.title}>
+                  <SidebarMenuButton
+                    asChild
+                    tooltip={item.title}
+                    className="group-data-[collapsible=icon]/sidebar:justify-center group-data-[collapsible=icon]/sidebar:gap-0"
+                  >
                     <Link href={item.url}>
-                      <item.icon />
-                      <span>{item.title}</span>
+                      <item.icon className="size-5" />
+                      <span className="group-data-[collapsible=icon]/sidebar:hidden">
+                        {item.title}
+                      </span>
                     </Link>
                   </SidebarMenuButton>
                 </SidebarMenuItem>
@@ -76,9 +115,12 @@ export const AppSidebar = () => {
           <SidebarMenuItem>
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <SidebarMenuButton>
-                  <User2 /> Username
-                  <ChevronUp className="ml-auto" />
+                <SidebarMenuButton className="group-data-[collapsible=icon]/sidebar:justify-center group-data-[collapsible=icon]/sidebar:gap-0">
+                  <User2 className="size-5" />
+                  <span className="group-data-[collapsible=icon]/sidebar:hidden">
+                    Username
+                  </span>
+                  <ChevronUp className="ml-auto group-data-[collapsible=icon]/sidebar:hidden" />
                 </SidebarMenuButton>
               </DropdownMenuTrigger>
               <DropdownMenuContent
